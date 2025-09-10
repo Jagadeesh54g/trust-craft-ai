@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { NetworkSuggestions } from "@/components/NetworkSuggestions";
-import { ConnectionsList } from "@/components/ConnectionsList";
+import { FollowersList } from "@/components/FollowersList";
 
 const Network = () => {
   return (
@@ -13,9 +13,9 @@ const Network = () => {
             <NetworkSuggestions />
           </div>
           
-          {/* Current Connections */}
+          {/* Current Followers */}
           <div className="lg:col-span-1">
-            <ConnectionsList />
+            <FollowersList />
           </div>
         </div>
       </div>

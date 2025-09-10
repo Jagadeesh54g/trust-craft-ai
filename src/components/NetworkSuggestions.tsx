@@ -23,7 +23,7 @@ export const NetworkSuggestions = () => {
       verified: true,
       mutualConnections: 12,
       skills: ["React", "TypeScript", "GraphQL"],
-      reason: "Works at Meta • 2nd degree connection"
+      reason: "Works at Meta • Similar interests"
     },
     {
       id: 2,
@@ -59,7 +59,7 @@ export const NetworkSuggestions = () => {
       verified: true,
       mutualConnections: 15,
       skills: ["Product Strategy", "Analytics", "Leadership"],
-      reason: "Product Manager • 2nd degree connection"
+      reason: "Product Manager • Similar background"
     }
   ];
 
@@ -105,7 +105,7 @@ export const NetworkSuggestions = () => {
             <div className="mb-4">
               <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
                 <Users className="w-4 h-4" />
-                <span>{person.mutualConnections} mutual connections</span>
+                <span>{person.mutualConnections} mutual followers</span>
               </div>
               <p className="text-sm text-muted-foreground">{person.reason}</p>
             </div>
@@ -121,7 +121,7 @@ export const NetworkSuggestions = () => {
             <div className="flex gap-2">
               <Button variant="primary" className="flex-1">
                 <UserPlus className="w-4 h-4 mr-2" />
-                Connect
+                Follow
               </Button>
               <Button variant="glass" className="flex-1">
                 Message

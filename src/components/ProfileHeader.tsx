@@ -35,8 +35,8 @@ export const ProfileHeader = () => {
         <div className="absolute -top-16 left-6">
           <div className="relative">
             <Avatar className="w-32 h-32 border-4 border-background">
-              <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=128&h=128&fit=crop&crop=face" />
-              <AvatarFallback className="text-2xl">AJ</AvatarFallback>
+              <AvatarImage src="" />
+              <AvatarFallback className="text-2xl">U</AvatarFallback>
             </Avatar>
             <Button 
               variant="glass" 
@@ -63,60 +63,69 @@ export const ProfileHeader = () => {
         {/* Profile Info */}
         <div className="mt-12">
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-3xl font-bold">Alex Johnson</h1>
-            <Verified className="w-6 h-6 text-primary" />
-            <Badge className="bg-success/20 text-success border-success/30">
-              <Trophy className="w-3 h-3 mr-1" />
-              Top 5% Performer
-            </Badge>
+            <h1 className="text-3xl font-bold">Your Name</h1>
+            <Button variant="glass" size="sm">
+              <Edit className="w-4 h-4 mr-2" />
+              Edit Name
+            </Button>
           </div>
 
-          <p className="text-xl text-muted-foreground mb-4">
-            Full Stack Developer | AI Enthusiast | Open Source Contributor
-          </p>
+          <div className="flex items-center gap-2 mb-4">
+            <p className="text-xl text-muted-foreground">Add your professional headline</p>
+            <Button variant="glass" size="sm">
+              <Edit className="w-4 h-4 mr-2" />
+              Add Headline
+            </Button>
+          </div>
 
           <div className="flex items-center gap-6 text-sm text-muted-foreground mb-4">
             <div className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              <span>San Francisco, CA</span>
+              <span>Add location</span>
+              <Button variant="glass" size="sm">
+                <Edit className="w-3 h-3" />
+              </Button>
             </div>
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              <span>Joined March 2023</span>
+              <span>Joined {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
             </div>
             <div className="flex items-center gap-1">
               <Users className="w-4 h-4" />
-              <span>342 connections</span>
+              <span>0 followers</span>
             </div>
             <div className="flex items-center gap-1">
               <Eye className="w-4 h-4" />
-              <span>1,247 profile views</span>
+              <span>0 profile views</span>
             </div>
           </div>
 
-          <p className="text-muted-foreground leading-relaxed mb-6 max-w-3xl">
-            Passionate full-stack developer with 5+ years of experience building scalable web applications. 
-            Specialized in React, Node.js, and cloud technologies. Recently completed AI/ML certification 
-            and actively contributing to open-source projects. Always excited to tackle challenging problems 
-            and mentor upcoming developers.
-          </p>
+          <div className="flex items-center gap-2 mb-6">
+            <p className="text-muted-foreground leading-relaxed max-w-3xl">
+              Add a professional summary to tell people about yourself and what you do.
+            </p>
+            <Button variant="glass" size="sm">
+              <Edit className="w-4 h-4 mr-2" />
+              Add Bio
+            </Button>
+          </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center p-4 rounded-lg bg-muted/20">
-              <div className="text-2xl font-bold text-primary">94%</div>
+              <div className="text-2xl font-bold text-primary">0%</div>
               <div className="text-sm text-muted-foreground">Trust Score</div>
             </div>
             <div className="text-center p-4 rounded-lg bg-muted/20">
-              <div className="text-2xl font-bold text-success">12</div>
+              <div className="text-2xl font-bold text-success">0</div>
               <div className="text-sm text-muted-foreground">Verified Skills</div>
             </div>
             <div className="text-center p-4 rounded-lg bg-muted/20">
-              <div className="text-2xl font-bold text-warning">8</div>
+              <div className="text-2xl font-bold text-warning">0</div>
               <div className="text-sm text-muted-foreground">Certifications</div>
             </div>
             <div className="text-center p-4 rounded-lg bg-muted/20">
-              <div className="text-2xl font-bold text-accent">15</div>
+              <div className="text-2xl font-bold text-accent">0</div>
               <div className="text-sm text-muted-foreground">Projects</div>
             </div>
           </div>
