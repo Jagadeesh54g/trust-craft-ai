@@ -20,7 +20,7 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { path: "/", label: "Home", icon: <Home className="w-5 h-5" /> },
+    { path: "/feed", label: "Home", icon: <Home className="w-5 h-5" /> },
     { path: "/jobs", label: "Jobs", icon: <Briefcase className="w-5 h-5" /> },
     { path: "/messages", label: "Messages", icon: <MessageSquare className="w-5 h-5" /> },
     { path: "/network", label: "Network", icon: <Users className="w-5 h-5" /> },
@@ -35,7 +35,7 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/feed" className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
               <span className="text-white font-bold text-xl">C</span>
             </div>
@@ -55,11 +55,6 @@ export const Navigation = () => {
                 >
                   {item.icon}
                   <span className="ml-2">{item.label}</span>
-                  {item.path === "/messages" && (
-                    <Badge className="absolute -top-1 -right-1 w-5 h-5 p-0 text-xs bg-destructive">
-                      3
-                    </Badge>
-                  )}
                 </Button>
               </Link>
             ))}
@@ -78,18 +73,15 @@ export const Navigation = () => {
             </div>
 
             {/* Notifications */}
-            <Button variant="glass" size="sm" className="relative">
+            <Button variant="glass" size="sm">
               <Bell className="w-4 h-4" />
-              <Badge className="absolute -top-1 -right-1 w-5 h-5 p-0 text-xs bg-warning">
-                5
-              </Badge>
             </Button>
 
             {/* Profile */}
             <Link to="/profile">
               <Avatar className="w-8 h-8 cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
-                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" />
-                <AvatarFallback>AJ</AvatarFallback>
+                <AvatarImage src="" />
+                <AvatarFallback>U</AvatarFallback>
               </Avatar>
             </Link>
 

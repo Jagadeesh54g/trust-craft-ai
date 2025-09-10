@@ -17,6 +17,7 @@ import {
   Award,
   FolderOpen
 } from "lucide-react";
+import { ProfileUpload } from "./ProfileUpload";
 
 export const ProfileContent = () => {
   return (
@@ -68,10 +69,12 @@ export const ProfileContent = () => {
               <Briefcase className="w-5 h-5" />
               Experience
             </h2>
-            <Button variant="primary">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Experience
-            </Button>
+            <ProfileUpload type="experience">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Experience
+              </Button>
+            </ProfileUpload>
           </div>
           <div className="text-center py-12 text-muted-foreground">
             <Briefcase className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -88,10 +91,12 @@ export const ProfileContent = () => {
               <GraduationCap className="w-5 h-5" />
               Skills
             </h2>
-            <Button variant="primary">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Skill
-            </Button>
+            <ProfileUpload type="skill">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Skill
+              </Button>
+            </ProfileUpload>
           </div>
           <div className="text-center py-12 text-muted-foreground">
             <GraduationCap className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -108,10 +113,12 @@ export const ProfileContent = () => {
               <FolderOpen className="w-5 h-5" />
               Projects
             </h2>
-            <Button variant="primary">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Project
-            </Button>
+            <ProfileUpload type="project">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Project
+              </Button>
+            </ProfileUpload>
           </div>
           <div className="text-center py-12 text-muted-foreground">
             <FolderOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -128,10 +135,12 @@ export const ProfileContent = () => {
               <Award className="w-5 h-5" />
               Certificates
             </h2>
-            <Button variant="primary">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Certificate
-            </Button>
+            <ProfileUpload type="certificate">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Certificate
+              </Button>
+            </ProfileUpload>
           </div>
           <div className="text-center py-12 text-muted-foreground">
             <Award className="w-12 h-12 mx-auto mb-4 opacity-50" />

@@ -25,23 +25,33 @@ const Login = () => {
   const features = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "AI-Verified Skills",
-      description: "Authenticate your skills with AI-powered assessments and build trust with verified credentials."
+      title: "AI-Powered Skill Verification",
+      description: "Take comprehensive AI assessments to verify your technical skills. Get certified with blockchain-secured credentials that employers trust."
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Professional Network",
-      description: "Connect with verified professionals and build meaningful relationships in your industry."
+      title: "Trust-First Professional Network", 
+      description: "Connect only with verified professionals. Every profile goes through AI validation to ensure authenticity and credibility."
     },
     {
       icon: <Briefcase className="w-6 h-6" />,
-      title: "Smart Job Matching",
-      description: "Get matched with opportunities that align with your verified skills and career goals."
+      title: "Intelligent Job Matching",
+      description: "Advanced AI algorithms match your verified skills with perfect opportunities. Get personalized recommendations based on your credibility score."
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: "Instant Resume Generation",
-      description: "Auto-generate professional resumes from your verified achievements and credentials."
+      title: "Auto-Generated ATS Resumes",
+      description: "Instantly generate ATS-friendly resumes from your verified data. AI optimizes content for each job application automatically."
+    },
+    {
+      icon: <CheckCircle className="w-6 h-6" />,
+      title: "Blockchain Credential Storage",
+      description: "All your achievements are stored on blockchain for permanent verification. Certificates, skills, and experience that can't be faked."
+    },
+    {
+      icon: <ArrowRight className="w-6 h-6" />,
+      title: "Real-Time Credibility Score",
+      description: "Dynamic scoring based on verified skills, peer endorsements, and project contributions. Higher scores unlock premium opportunities."
     }
   ];
 
