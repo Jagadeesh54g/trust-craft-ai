@@ -36,9 +36,11 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/feed" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-xl">C</span>
-            </div>
+            <img 
+              src="/src/assets/credify-logo.png" 
+              alt="Credify Logo" 
+              className="h-10 w-auto"
+            />
             <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               Credify
             </span>

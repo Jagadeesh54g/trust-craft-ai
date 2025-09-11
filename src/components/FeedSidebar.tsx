@@ -10,19 +10,32 @@ import {
   Calendar,
   Bookmark
 } from "lucide-react";
+import { useProfile } from "@/contexts/ProfileContext";
 
 export const FeedSidebar = () => {
+  const { profile } = useProfile();
+  
   return (
     <div className="space-y-6">
       {/* Profile Quick View */}
       <Card className="glass-card p-6">
         <div className="text-center mb-4">
           <Avatar className="w-16 h-16 mx-auto mb-3">
-            <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face" />
-            <AvatarFallback>AJ</AvatarFallback>
+            <AvatarImage src={profile.avatar} />
+            <AvatarFallback>
+              {profile.firstName ? profile.firstName[0] : 'U'}
+              {profile.lastName ? profile.lastName[0] : ''}
+            </AvatarFallback>
           </Avatar>
-          <h3 className="font-semibold">Alex Johnson</h3>
-          <p className="text-sm text-muted-foreground">Full Stack Developer</p>
+          <h3 className="font-semibold">
+            {profile.firstName || profile.lastName 
+              ? `${profile.firstName} ${profile.lastName}`.trim() 
+              : 'Your Name'
+            }
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            {profile.headline || 'Add your professional headline'}
+          </p>
         </div>
         
         <div className="space-y-3 mb-4">
@@ -31,21 +44,23 @@ export const FeedSidebar = () => {
               <Eye className="w-4 h-4" />
               Profile views
             </span>
-            <span className="font-medium">156</span>
+            <span className="font-medium">0</span>
           </div>
           <div className="flex justify-between items-center text-sm">
             <span className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
               Trust Score
             </span>
-            <span className="font-medium text-success">94%</span>
+            <span className="font-medium text-success">
+              {profile.skills.filter(skill => skill.level === 'advanced' || skill.level === 'expert').length > 0 ? '85%' : '0%'}
+            </span>
           </div>
           <div className="flex justify-between items-center text-sm">
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4" />
-              Connections
+              Followers
             </span>
-            <span className="font-medium">342</span>
+            <span className="font-medium">0</span>
           </div>
         </div>
         
