@@ -31,37 +31,36 @@ export const ChatWindow = ({ chatId }: ChatWindowProps) => {
     );
   }
 
-  // const messages = [
-  //   {
-  //     id: 1,
-  //     sender: "Sarah Chen",
-  //     content: "Hi Alex! I saw your profile and I'm really impressed with your React skills. We have an opening that might interest you.",
-  //     timestamp: "10:00 AM",
-  //     isOwn: false
-  //   },
-  //   {
-  //     id: 2,
-  //     sender: "You",
-  //     content: "Thank you for reaching out! I'd love to hear more about the opportunity.",
-  //     timestamp: "10:15 AM",
-  //     isOwn: true
-  //   },
-  //   {
-  //     id: 3,
-  //     sender: "Sarah Chen",
-  //     content: "Great! It's for a Senior React Developer position at TechCorp. We're building a new AI-powered platform. Are you available for a quick call this week?",
-  //     timestamp: "10:17 AM",
-  //     isOwn: false
-  //   },
-  //   {
-  //     id: 4,
-  //     sender: "You",
-  //     content: "That sounds really interesting! I'm available Thursday or Friday afternoon. What time works best for you?",
-  //     timestamp: "10:30 AM",
-  //     isOwn: true
-  //   }
-  // ];
-  const messages: any[] = [];
+  const messages = [
+    {
+      id: 1,
+      sender: "Sarah Chen",
+      content: "Hi Alex! I saw your profile and I'm really impressed with your React skills. We have an opening that might interest you.",
+      timestamp: "10:00 AM",
+      isOwn: false
+    },
+    {
+      id: 2,
+      sender: "You",
+      content: "Thank you for reaching out! I'd love to hear more about the opportunity.",
+      timestamp: "10:15 AM",
+      isOwn: true
+    },
+    {
+      id: 3,
+      sender: "Sarah Chen",
+      content: "Great! It's for a Senior React Developer position at TechCorp. We're building a new AI-powered platform. Are you available for a quick call this week?",
+      timestamp: "10:17 AM",
+      isOwn: false
+    },
+    {
+      id: 4,
+      sender: "You",
+      content: "That sounds really interesting! I'm available Thursday or Friday afternoon. What time works best for you?",
+      timestamp: "10:30 AM",
+      isOwn: true
+    }
+  ];
 
   return (
     <Card className="glass-card h-full flex flex-col">

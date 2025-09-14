@@ -70,9 +70,9 @@ export const Dashboard = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Content (Feed) */}
-          <div className="lg:col-span-3 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-6">
             {/* Skills Verification */}
             <Card className="glass-card p-6">
               <div className="flex items-center justify-between mb-6">
@@ -120,7 +120,7 @@ export const Dashboard = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6 lg:col-span-1">
+          <div className="space-y-6">
             {/* Profile Summary */}
             <Card className="glass-card p-6">
               <div className="text-center mb-4">
@@ -139,6 +139,10 @@ export const Dashboard = () => {
                 <Progress value={78} className="h-2" />
               </div>
               
+              <Button variant="glass" className="w-full mt-4">
+                <FileText className="w-4 h-4 mr-2" />
+                View Full Profile
+              </Button>
             </Card>
 
             {/* Quick Actions */}

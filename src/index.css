@@ -1,34 +1,3 @@
-/* Professional, colorful login background with photo overlay */
-@keyframes floatCloud {
-  0% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.03); }
-  100% { transform: translateY(0) scale(1); }
-}
-.bg-login-pro {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  overflow: hidden;
-}
-.bg-login-pro::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, #a5b4fc 0%, #2563eb 100%);
-  opacity: 0.85;
-  z-index: 1;
-}
-.bg-login-pro::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/assets/login-bg.jpg') center/cover no-repeat;
-  opacity: 0.25;
-  z-index: 2;
-  animation: floatCloud 8s ease-in-out infinite;
-}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;

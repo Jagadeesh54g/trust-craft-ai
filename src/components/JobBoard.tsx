@@ -12,7 +12,50 @@ import {
 } from "lucide-react";
 
 export const JobBoard = () => {
-  const jobs: any[] = [];
+  const jobs = [
+    {
+      id: 1,
+      title: "Senior Full Stack Developer",
+      company: "TechCorp Inc.",
+      location: "San Francisco, CA",
+      type: "Full-time",
+      salary: "$120k - $160k",
+      posted: "2 days ago",
+      skills: ["React", "Node.js", "TypeScript", "AWS"],
+      aiMatch: 94,
+      logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=40&h=40&fit=crop",
+      applicants: 12,
+      featured: true
+    },
+    {
+      id: 2,
+      title: "Frontend Engineer",
+      company: "StartupXYZ",
+      location: "Remote",
+      type: "Full-time",
+      salary: "$90k - $130k",
+      posted: "1 day ago",
+      skills: ["React", "Vue.js", "CSS", "JavaScript"],
+      aiMatch: 89,
+      logo: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=40&h=40&fit=crop",
+      applicants: 8,
+      featured: false
+    },
+    {
+      id: 3,
+      title: "DevOps Engineer",
+      company: "CloudTech Solutions",
+      location: "Austin, TX",
+      type: "Contract",
+      salary: "$80 - $120/hr",
+      posted: "3 days ago",
+      skills: ["Docker", "Kubernetes", "AWS", "Terraform"],
+      aiMatch: 76,
+      logo: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=40&h=40&fit=crop",
+      applicants: 15,
+      featured: false
+    }
+  ];
 
   return (
     <div className="space-y-6">
@@ -25,13 +68,7 @@ export const JobBoard = () => {
       </div>
 
       <div className="space-y-4">
-        {jobs.length === 0 ? (
-          <Card className="glass-card p-12 text-center">
-            <div className="text-muted-foreground mb-2">No jobs to show</div>
-            <p className="text-sm text-muted-foreground">Adjust filters or check back later for new opportunities.</p>
-          </Card>
-        ) : (
-        jobs.map((job) => (
+        {jobs.map((job) => (
           <Card key={job.id} className={`glass-card p-6 hover:scale-[1.01] transition-transform duration-300 ${job.featured ? 'border-primary/50' : ''}`}>
             {job.featured && (
               <div className="mb-4">
@@ -101,8 +138,7 @@ export const JobBoard = () => {
               </Button>
             </div>
           </Card>
-        ))
-        )}
+        ))}
       </div>
     </div>
   );

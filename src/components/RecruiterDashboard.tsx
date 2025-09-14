@@ -21,11 +21,84 @@ import {
 } from "lucide-react";
 
 export const RecruiterDashboard = () => {
-  const stats: any[] = [];
+  const stats = [
+    { label: "Active Job Posts", value: "8", change: "+2 this week", icon: <FileText className="w-5 h-5" /> },
+    { label: "Applications", value: "124", change: "+15 today", icon: <Users className="w-5 h-5" /> },
+    { label: "Interviews Scheduled", value: "12", change: "This week", icon: <Star className="w-5 h-5" /> },
+    { label: "Success Rate", value: "94%", change: "+5% this month", icon: <TrendingUp className="w-5 h-5" /> }
+  ];
 
-  const candidates: any[] = [];
+  const candidates = [
+    {
+      id: 1,
+      name: "Sarah Chen",
+      role: "Senior React Developer",
+      location: "San Francisco, CA",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=48&h=48&fit=crop&crop=face",
+      verified: true,
+      trustScore: 94,
+      skills: ["React", "TypeScript", "Node.js"],
+      experience: "5+ years",
+      salary: "$120k - $160k",
+      status: "Available"
+    },
+    {
+      id: 2,
+      name: "Michael Rodriguez",
+      role: "Full Stack Engineer",
+      location: "Austin, TX",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face",
+      verified: true,
+      trustScore: 89,
+      skills: ["Vue.js", "Python", "AWS"],
+      experience: "4+ years",
+      salary: "$100k - $140k",
+      status: "Open to offers"
+    },
+    {
+      id: 3,
+      name: "Emily Zhang",
+      role: "Frontend Developer",
+      location: "Remote",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=48&h=48&fit=crop&crop=face",
+      verified: false,
+      trustScore: 76,
+      skills: ["Angular", "JavaScript", "CSS"],
+      experience: "3+ years",
+      salary: "$80k - $120k",
+      status: "Actively looking"
+    }
+  ];
 
-  const applications: any[] = [];
+  const applications = [
+    {
+      id: 1,
+      candidate: "David Park",
+      position: "Senior Full Stack Developer",
+      applied: "2 hours ago",
+      status: "Under Review",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+      match: 92
+    },
+    {
+      id: 2,
+      candidate: "Lisa Wang",
+      position: "Frontend Engineer", 
+      applied: "1 day ago",
+      status: "Interview Scheduled",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
+      match: 88
+    },
+    {
+      id: 3,
+      candidate: "James Wilson",
+      position: "DevOps Engineer",
+      applied: "2 days ago",
+      status: "Offer Sent",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+      match: 95
+    }
+  ];
 
   return (
     <div className="space-y-8">
@@ -43,12 +116,7 @@ export const RecruiterDashboard = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.length === 0 ? (
-          <Card className="glass-card p-6 text-center md:col-span-2 lg:col-span-4">
-            <p className="text-muted-foreground">No stats to display yet</p>
-          </Card>
-        ) : (
-          stats.map((stat, index) => (
+        {stats.map((stat, index) => (
           <Card key={index} className="glass-card p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="text-muted-foreground">{stat.icon}</div>
@@ -57,8 +125,7 @@ export const RecruiterDashboard = () => {
             <div className="text-2xl font-bold mb-1">{stat.value}</div>
             <div className="text-sm text-muted-foreground">{stat.label}</div>
           </Card>
-          ))
-        )}
+        ))}
       </div>
 
       <Tabs defaultValue="candidates" className="space-y-6">
@@ -88,12 +155,7 @@ export const RecruiterDashboard = () => {
 
           {/* Candidate Results */}
           <div className="grid grid-cols-1 gap-6">
-            {candidates.length === 0 ? (
-              <Card className="glass-card p-12 text-center">
-                <p className="text-muted-foreground">No candidates to display</p>
-              </Card>
-            ) : (
-              candidates.map((candidate) => (
+            {candidates.map((candidate) => (
               <Card key={candidate.id} className="glass-card p-6 hover:scale-[1.01] transition-transform duration-300">
                 <div className="flex items-start gap-6">
                   <Avatar className="w-16 h-16">
@@ -165,8 +227,7 @@ export const RecruiterDashboard = () => {
                   </div>
                 </div>
               </Card>
-            ))
-            )}
+            ))}
           </div>
         </TabsContent>
 
@@ -174,10 +235,7 @@ export const RecruiterDashboard = () => {
           <Card className="glass-card p-6">
             <h3 className="text-lg font-semibold mb-4">Recent Applications</h3>
             <div className="space-y-4">
-              {applications.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">No applications yet</div>
-              ) : (
-              applications.map((app) => (
+              {applications.map((app) => (
                 <div key={app.id} className="flex items-center gap-4 p-4 rounded-lg bg-muted/20">
                   <Avatar className="w-12 h-12">
                     <AvatarImage src={app.avatar} />
@@ -213,8 +271,7 @@ export const RecruiterDashboard = () => {
                     </Button>
                   </div>
                 </div>
-              ))
-              )}
+              ))}
             </div>
           </Card>
         </TabsContent>

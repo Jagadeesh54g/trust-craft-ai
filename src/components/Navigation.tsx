@@ -13,13 +13,11 @@ import {
   Menu
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 
 export const Navigation = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
 
   const navItems = [
     { path: "/feed", label: "Home", icon: <Home className="w-5 h-5" /> },
@@ -39,10 +37,13 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/feed" className="flex items-center gap-3">
             <img 
-              src="/src/assets/Credify.png" 
+              src="/src/assets/credify-logo.png" 
               alt="Credify Logo" 
-              style={{height: 'auto', width: 'auto', maxHeight: '130px', maxWidth: '130px', borderRadius: 0, boxShadow: 'none', background: 'none'}}
+              className="h-10 w-auto"
             />
+            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Credify
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -78,22 +79,13 @@ export const Navigation = () => {
               <Bell className="w-4 h-4" />
             </Button>
 
-            {/* Profile / Auth */}
-            {isAuthenticated ? (
-              <>
-                <Link to="/profile">
-                  <Avatar className="w-8 h-8 cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
-                    <AvatarImage src="" />
-                    <AvatarFallback>U</AvatarFallback>
-                  </Avatar>
-                </Link>
-                <Button variant="glass" size="sm" onClick={logout}>Logout</Button>
-              </>
-            ) : (
-              <Link to="/">
-                <Button variant="primary" size="sm">Login</Button>
-              </Link>
-            )}
+            {/* Profile */}
+            <Link to="/profile">
+              <Avatar className="w-8 h-8 cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all">
+                <AvatarImage src="" />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+            </Link>
 
             {/* Mobile Menu Toggle */}
             <Button

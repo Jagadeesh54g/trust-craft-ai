@@ -13,17 +13,51 @@ import {
 } from "lucide-react";
 
 export const SocialFeed = () => {
-  const posts: any[] = [];
+  const posts = [
+    {
+      id: 1,
+      author: "Sarah Chen",
+      role: "Senior Developer at TechCorp",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
+      verified: true,
+      time: "2h",
+      content: "Just completed my AI/ML certification! 🎉 The verification process on Credify was seamless and the AI-generated assessment really tested my practical knowledge.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+      likes: 47,
+      comments: 12,
+      shares: 5,
+      achievement: "AI/ML Expert Certified"
+    },
+    {
+      id: 2,
+      author: "Michael Rodriguez",
+      role: "Product Manager at StartupXYZ",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+      verified: true,
+      time: "4h",
+      content: "Exciting news! Our team just launched a new feature that increased user engagement by 40%. Looking for talented developers to join our mission!",
+      likes: 89,
+      comments: 23,
+      shares: 15,
+      hiring: true
+    },
+    {
+      id: 3,
+      author: "Emily Zhang",
+      role: "UX Designer at DesignCo",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face",
+      verified: false,
+      time: "6h",
+      content: "Thoughts on the future of design systems? I believe AI-assisted design tools will revolutionize how we approach component libraries...",
+      likes: 34,
+      comments: 18,
+      shares: 7
+    }
+  ];
 
   return (
     <div className="space-y-6">
-      {posts.length === 0 ? (
-        <Card className="glass-card p-12 text-center">
-          <div className="text-muted-foreground mb-2">Your feed is empty</div>
-          <p className="text-sm text-muted-foreground">Follow people or create a post to see updates here.</p>
-        </Card>
-      ) : (
-      posts.map((post) => (
+      {posts.map((post) => (
         <Card key={post.id} className="glass-card p-6 hover:scale-[1.01] transition-transform duration-300">
           {/* Post Header */}
           <div className="flex items-start justify-between mb-4">
@@ -102,8 +136,7 @@ export const SocialFeed = () => {
             </Button>
           </div>
         </Card>
-      ))
-      )}
+      ))}
     </div>
   );
 };

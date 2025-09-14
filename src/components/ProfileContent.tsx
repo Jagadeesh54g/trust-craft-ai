@@ -20,22 +20,10 @@ import {
   FolderOpen
 } from "lucide-react";
 import { ProfileUpload } from "./ProfileUpload";
-import { useAuth } from "@/contexts/AuthContext";
-import { useResumeVersions, uploadResume } from "@/lib/resume";
-import { useSkills } from "@/lib/skills";
-import { useExperiences } from "@/lib/experience";
-import { useProjects } from "@/lib/projects";
-import { useCertificates } from "@/lib/certificates";
 
 export const ProfileContent = () => {
   const { profile, updateProfile } = useProfile();
   const { toast } = useToast();
-  const { user } = useAuth();
-  const { versions, loading: resumeLoading, refresh } = useResumeVersions();
-  const { skills, loading: skillsLoading, addSkill } = useSkills();
-  const { items: experiences, loading: expLoading, addExperience } = useExperiences();
-  const { projects, loading: projectsLoading, addProject } = useProjects();
-  const { certs, loading: certsLoading, addCertificate } = useCertificates();
 
   return (
     <Tabs defaultValue="about" className="w-full">
@@ -107,18 +95,16 @@ export const ProfileContent = () => {
               </Button>
             </ProfileUpload>
           </div>
-          {expLoading ? (
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          ) : experiences.length > 0 ? (
+          {profile.experience.length > 0 ? (
             <div className="space-y-4">
-              {experiences.map((exp) => (
+              {profile.experience.map((exp) => (
                 <div key={exp.id} className="border-l-2 border-primary/20 pl-4 pb-4">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h4 className="font-semibold">{exp.job_title}</h4>
+                      <h4 className="font-semibold">{exp.jobTitle}</h4>
                       <p className="text-muted-foreground">{exp.company}</p>
                       <p className="text-sm text-muted-foreground">
-                        {exp.start_date} - {exp.end_date || 'Present'}
+                        {exp.startDate} - {exp.endDate || 'Present'}
                       </p>
                     </div>
                     <Button variant="glass" size="sm">
@@ -148,29 +134,17 @@ export const ProfileContent = () => {
               <GraduationCap className="w-5 h-5" />
               Skills
             </h2>
-            <Button
-              variant="primary"
-              onClick={async () => {
-                const name = prompt('Enter skill name');
-                if (!name) return;
-                try {
-                  await addSkill(name, 'beginner');
-                  toast({ title: 'Skill added' });
-                } catch (err: any) {
-                  toast({ title: 'Failed to add skill', description: err.message, variant: 'destructive' });
-                }
-              }}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Skill
-            </Button>
+            <ProfileUpload type="skill">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Skill
+              </Button>
+            </ProfileUpload>
           </div>
-          {skillsLoading ? (
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          ) : skills.length > 0 ? (
+          {profile.skills.length > 0 ? (
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {skills.map((skill) => (
+                {profile.skills.map((skill) => (
                   <div key={skill.id} className="p-4 border border-glass-border rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <div>
@@ -207,32 +181,20 @@ export const ProfileContent = () => {
               <FolderOpen className="w-5 h-5" />
               Projects
             </h2>
-            <Button
-              variant="primary"
-              onClick={async () => {
-                const title = prompt('Enter project title');
-                if (!title) return;
-                try {
-                  await addProject({ title });
-                  toast({ title: 'Project added' });
-                } catch (err: any) {
-                  toast({ title: 'Failed to add project', description: err.message, variant: 'destructive' });
-                }
-              }}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Project
-            </Button>
+            <ProfileUpload type="project">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Project
+              </Button>
+            </ProfileUpload>
           </div>
-          {projectsLoading ? (
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          ) : projects.length > 0 ? (
+          {profile.projects.length > 0 ? (
             <div className="space-y-4">
-              {projects.map((project) => (
+              {profile.projects.map((project) => (
                 <div key={project.id} className="p-6 border border-glass-border rounded-lg">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h4 className="font-semibold text-lg">{project.title}</h4>
+                      <h4 className="font-semibold text-lg">{project.name}</h4>
                       <p className="text-sm text-muted-foreground">{project.technologies}</p>
                     </div>
                     <Button variant="glass" size="sm">
@@ -241,16 +203,16 @@ export const ProfileContent = () => {
                   </div>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   <div className="flex gap-2">
-                    {project.live_url && (
+                    {project.liveUrl && (
                       <Button variant="outline" size="sm" asChild>
-                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           Live Demo
                         </a>
                       </Button>
                     )}
-                    {project.github_url && (
+                    {project.githubUrl && (
                       <Button variant="outline" size="sm" asChild>
-                        <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                           View Code
                         </a>
                       </Button>
@@ -276,43 +238,31 @@ export const ProfileContent = () => {
               <Award className="w-5 h-5" />
               Certificates
             </h2>
-            <Button
-              variant="primary"
-              onClick={async () => {
-                const name = prompt('Enter certificate name');
-                if (!name) return;
-                try {
-                  await addCertificate({ name });
-                  toast({ title: 'Certificate added' });
-                } catch (err: any) {
-                  toast({ title: 'Failed to add certificate', description: err.message, variant: 'destructive' });
-                }
-              }}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Certificate
-            </Button>
+            <ProfileUpload type="certificate">
+              <Button variant="primary">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Certificate
+              </Button>
+            </ProfileUpload>
           </div>
-          {certsLoading ? (
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          ) : certs.length > 0 ? (
+          {profile.certificates.length > 0 ? (
             <div className="space-y-4">
-              {certs.map((cert) => (
+              {profile.certificates.map((cert) => (
                 <div key={cert.id} className="p-6 border border-glass-border rounded-lg">
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h4 className="font-semibold">{cert.name}</h4>
                       <p className="text-muted-foreground">{cert.issuer}</p>
-                      <p className="text-sm text-muted-foreground">Issued {cert.issue_date}</p>
-                      {cert.credential_id && (
-                        <p className="text-xs text-muted-foreground mt-1">ID: {cert.credential_id}</p>
+                      <p className="text-sm text-muted-foreground">Issued {cert.issueDate}</p>
+                      {cert.credentialId && (
+                        <p className="text-xs text-muted-foreground mt-1">ID: {cert.credentialId}</p>
                       )}
                     </div>
                     <Button variant="glass" size="sm">
                       <Edit className="w-4 h-4" />
                     </Button>
                   </div>
-                  {cert.file_path && (
+                  {cert.file && (
                     <Badge variant="secondary" className="mt-2">
                       Certificate File Uploaded
                     </Badge>
@@ -456,30 +406,10 @@ export const ProfileContent = () => {
               <p className="text-muted-foreground mb-4">
                 Drag and drop your resume file here, or click to browse
               </p>
-              <label className="inline-flex items-center justify-center cursor-pointer">
-                <input
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  className="hidden"
-                  onChange={async (e) => {
-                    const file = e.target.files?.[0];
-                    if (!file || !user) return;
-                    try {
-                      await uploadResume(file, user.id);
-                      toast({ title: "Resume uploaded" });
-                      refresh();
-                    } catch (err: any) {
-                      toast({ title: "Upload failed", description: err.message, variant: "destructive" });
-                    } finally {
-                      e.currentTarget.value = "";
-                    }
-                  }}
-                />
-                <Button variant="primary">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Choose File
-                </Button>
-              </label>
+              <Button variant="primary">
+                <Upload className="w-4 h-4 mr-2" />
+                Choose File
+              </Button>
               <p className="text-xs text-muted-foreground mt-2">
                 Supported formats: PDF, DOC, DOCX (Max 5MB)
               </p>
@@ -500,31 +430,6 @@ export const ProfileContent = () => {
                   AI Resume Writer
                 </Button>
               </div>
-            </div>
-
-            <div className="p-4 rounded-lg border border-glass-border">
-              <div className="flex items-center justify-between mb-2">
-                <h4 className="font-medium">Your Resume Versions</h4>
-                {resumeLoading && <span className="text-sm text-muted-foreground">Loading...</span>}
-              </div>
-              {versions.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No resumes uploaded yet.</p>
-              ) : (
-                <div className="space-y-2">
-                  {versions.map((v) => (
-                    <div key={v.id} className="flex items-center justify-between">
-                      <div className="text-sm text-muted-foreground">
-                        {new Date(v.created_at).toLocaleString()}
-                      </div>
-                      {v.signed_url && (
-                        <Button asChild size="sm" variant="outline">
-                          <a href={v.signed_url} target="_blank" rel="noopener noreferrer">Download</a>
-                        </Button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </Card>
