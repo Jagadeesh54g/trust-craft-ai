@@ -10,28 +10,37 @@ import {
   Send
 } from "lucide-react";
 import { useState } from "react";
+import { useProfile } from "@/contexts/ProfileContext";
 
 export const CreatePost = () => {
   const [content, setContent] = useState("");
+  const { profile } = useProfile();
 
   return (
-    <Card className="glass-card p-6">
-      <div className="flex gap-4">
-        <Avatar className="w-12 h-12">
-          <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face" />
-          <AvatarFallback>AJ</AvatarFallback>
+  <Card className="glass-card p-8 w-full shadow-none border-none">
+  <div className="flex gap-4 w-full">
+        <Avatar className="w-14 h-14">
+          {profile.avatar ? (
+            <AvatarImage src={profile.avatar} />
+          ) : null}
+          <AvatarFallback>
+            {(profile.firstName || profile.lastName)
+              ? `${profile.firstName?.[0] ?? ''}${profile.lastName?.[0] ?? ''}`.trim() || 'U'
+              : 'U'}
+          </AvatarFallback>
         </Avatar>
-        
-        <div className="flex-1 space-y-4">
+
+  <div className="flex-1 space-y-4 w-full">
           <Textarea
             placeholder="Share your professional insights, achievements, or career updates..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="min-h-[120px] resize-none border-glass-border bg-muted/20 focus:bg-muted/30 transition-colors"
+            className="min-h-[120px] h-24 resize-none border-glass-border bg-muted/20 focus:bg-muted/30 transition-colors text-lg px-4 py-3 w-full"
+            style={{ width: '100%' }}
           />
-          
+
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <Button variant="glass" size="sm">
                 <Image className="w-4 h-4 mr-2" />
                 Photo
@@ -49,11 +58,11 @@ export const CreatePost = () => {
                 Event
               </Button>
             </div>
-            
+
             <Button 
               variant="primary" 
               disabled={!content.trim()}
-              className="disabled:opacity-50"
+              className="disabled:opacity-50 px-6 py-2 text-base"
             >
               <Send className="w-4 h-4 mr-2" />
               Post
