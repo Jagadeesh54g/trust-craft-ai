@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
-import { supabase, hasSupabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 type UserRole = "user" | "recruiter" | "admin";
 
@@ -49,7 +49,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [user, token]);
 
   useEffect(() => {
-    if (!hasSupabase) return;
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user) {
         setToken(session.access_token ?? null);
@@ -70,7 +69,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    if (!hasSupabase) throw new Error("Supabase not configured");
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw new Error(error.message);
     const session = data.session;
@@ -86,7 +84,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const register = async (name: string, email: string, password: string) => {
-    if (!hasSupabase) throw new Error("Supabase not configured");
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -101,7 +98,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const oauthSignIn = async (provider: 'google' | 'github' | 'linkedin') => {
-    if (!hasSupabase) throw new Error("Supabase not configured");
     const mapped = provider === 'linkedin' ? 'linkedin_oidc' : provider;
     const { error } = await supabase.auth.signInWithOAuth({
       provider: mapped,
@@ -113,9 +109,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
-    if (hasSupabase) {
-      await supabase.auth.signOut();
-    }
+    await supabase.auth.signOut();
     setUser(null);
     setToken(null);
     localStorage.removeItem(AUTH_STORAGE_KEY);
