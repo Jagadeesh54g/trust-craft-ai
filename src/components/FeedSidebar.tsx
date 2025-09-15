@@ -70,40 +70,14 @@ export const FeedSidebar = () => {
         </Button>
       </Card>
 
-      {/* Recent Activity */}
-      <Card className="glass-card p-6">
-        <h3 className="font-semibold mb-4">Recent Activity</h3>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 text-sm">
-            <div className="w-2 h-2 bg-success rounded-full"></div>
-            <span>Completed React assessment</span>
-          </div>
-          <div className="flex items-center gap-3 text-sm">
-            <div className="w-2 h-2 bg-primary rounded-full"></div>
-            <span>New connection request</span>
-          </div>
-          <div className="flex items-center gap-3 text-sm">
-            <div className="w-2 h-2 bg-warning rounded-full"></div>
-            <span>Profile viewed by recruiter</span>
-          </div>
-        </div>
-      </Card>
-
       {/* Upcoming Events */}
       <Card className="glass-card p-6">
         <h3 className="font-semibold mb-4 flex items-center gap-2">
           <Calendar className="w-4 h-4" />
           Upcoming
         </h3>
-        <div className="space-y-3">
-          <div className="text-sm">
-            <div className="font-medium">Node.js Assessment</div>
-            <div className="text-muted-foreground">Tomorrow at 2:00 PM</div>
-          </div>
-          <div className="text-sm">
-            <div className="font-medium">Tech Meetup</div>
-            <div className="text-muted-foreground">Friday, 6:00 PM</div>
-          </div>
+        <div className="space-y-3 text-center text-muted-foreground">
+          <p>No upcoming events</p>
         </div>
       </Card>
 

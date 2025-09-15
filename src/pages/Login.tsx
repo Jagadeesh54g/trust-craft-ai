@@ -135,11 +135,6 @@ const Login = () => {
   const [verificationTimeout, setVerificationTimeout] = useState(false);
   const pollingRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/feed', { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
 
   const features = [
     {

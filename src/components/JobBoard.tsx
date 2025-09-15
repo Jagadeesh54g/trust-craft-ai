@@ -70,14 +70,6 @@ export const JobBoard = () => {
       <div className="space-y-4">
         {jobs.map((job) => (
           <Card key={job.id} className={`glass-card p-6 hover:scale-[1.01] transition-transform duration-300 ${job.featured ? 'border-primary/50' : ''}`}>
-            {job.featured && (
-              <div className="mb-4">
-                <Badge className="bg-primary/20 text-primary border-primary/30">
-                  <Zap className="w-3 h-3 mr-1" />
-                  Featured Job
-                </Badge>
-              </div>
-            )}
 
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-start gap-4">
@@ -110,9 +102,6 @@ export const JobBoard = () => {
               </div>
 
               <div className="text-right">
-                <Badge className="mb-2 bg-success/20 text-success border-success/30">
-                  {job.aiMatch}% AI Match
-                </Badge>
                 <div className="text-lg font-semibold flex items-center gap-1">
                   <DollarSign className="w-4 h-4" />
                   {job.salary}
