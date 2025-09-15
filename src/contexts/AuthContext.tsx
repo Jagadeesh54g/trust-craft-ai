@@ -104,7 +104,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!hasSupabase) throw new Error("Supabase not configured");
     const mapped = provider === 'linkedin' ? 'linkedin_oidc' : provider;
     const { error } = await supabase.auth.signInWithOAuth({
-      // @ts-expect-error - provider mapping
       provider: mapped,
       options: {
         redirectTo: `${window.location.origin}/feed`,
